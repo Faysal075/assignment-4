@@ -61,22 +61,22 @@
             <div class="input-group f-class">
                 <div>
                     <label for="">First Class ($150)</label>
-                    <input class="inp-style inp-width" type="number" name="">
+                    <input id="f-input" class="inp-style inp-width" type="number" name="" value="0">
                 </div>
                 <div class="plus-minus-btn">
-                    <button id="" class="btn btn-default"><i class="fas fa-plus"></i></button>
-                    <button id="" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                    <button id="plus-btn" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                    <button id="minus-btn" class="btn btn-default"><i class="fas fa-minus"></i></button>
                 </div>
             </div>
 
             <div class="input-group f-class">
                 <div>
                     <label for="">Economy ($100)</label>
-                    <input class="inp-style inp-width" type="number" name="">
+                    <input id="e-input" class="inp-style inp-width" type="number" name="" value="0">
                 </div>
                 <div class="plus-minus-btn">
-                    <button id="" class="btn btn-default"><i class="fas fa-plus"></i></button>
-                    <button id="" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                    <button id="plusBtn" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                    <button id="minusBtn" class="btn btn-default"><i class="fas fa-minus"></i></button>
                 </div>
             </div>
             <div class="calculations">
@@ -110,6 +110,42 @@
             <button class="btn-style">Book Now</button>
         </div>
     </main>
+    <script>
+        // f-class + btn..
+        document.getElementById("plus-btn").addEventListener("click", function () {
+            const firstClassInput = document.getElementById("f-input").value;
+            const firstClassInputNumber = parseFloat(firstClassInput);
+            const increaseTicket = firstClassInputNumber + 1;
+            document.getElementById("f-input").value = increaseTicket;
+        });
+        // f-class - btn..
+        document.getElementById("minus-btn").addEventListener("click", function () {
+            const firstClassInput = document.getElementById("f-input").value;
+            if(firstClassInput == 0){
+                firstClassInput = "0";
+            }
+            const firstClassInputNumber = parseFloat(firstClassInput);
+            const decreaseTicket = firstClassInputNumber - 1;
+            document.getElementById("f-input").value = decreaseTicket;
+        });
+        // e-class + btn
+        document.getElementById("plusBtn").addEventListener("click", function () {
+            const firstClassInput = document.getElementById("e-input").value;
+            const firstClassInputNumber = parseFloat(firstClassInput);
+            const increaseTicket = firstClassInputNumber + 1;
+            document.getElementById("e-input").value = increaseTicket;
+        });
+        // e-class - btn
+        document.getElementById("minusBtn").addEventListener("click", function () {
+            const firstClassInput = document.getElementById("e-input").value;
+            if(firstClassInput == 0){
+                firstClassInput = "0";
+            }
+            const firstClassInputNumber = parseFloat(firstClassInput);
+            const decreaseTicket = firstClassInputNumber - 1;
+            document.getElementById("e-input").value = decreaseTicket;
+        });
+    </script>
 
     <!--Thank You-->
 </body>
