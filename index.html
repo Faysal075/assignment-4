@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet" />
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
+
 <body>
     <!--Header and Menu Section-->
     <header class="container">
@@ -98,33 +100,31 @@
                     </div>
                 </div>
             </div>
-            <button id="booking-btn" type="button" class="btn btn-primary btn-dark  btn-style">Book Now</button>
-        </div>
-        <div id="bill-area">
-            <h1>welcome to the billing part</h1>
+            <button id="booking-btn" onclick="confirmationText()" type="button" class="btn btn-primary btn-dark  btn-style">Book Now</button>
         </div>
     </main>
     <script>
-        // f-class + btn..
+        // first class ticket positive button event handler
         document.getElementById("plus-btn").addEventListener("click", function () {
             positiveCount("f-input");
             calculateTotal();
         });
-        // f-class - btn..
+        // // first class ticket negative button event handler
         document.getElementById("minus-btn").addEventListener("click", function () {
             negativeCount("f-input");
             calculateTotal();
         });
-        // e-class + btn
+        // economy class ticket positive button event handler
         document.getElementById("plusBtn").addEventListener("click", function () {
             positiveCount("e-input");
             calculateTotal();
         });
-        // e-class - btn
+        // economy class ticket negative button event handle
         document.getElementById("minusBtn").addEventListener("click", function () {
             negativeCount("e-input");
             calculateTotal();
         });
+        // positive count function
         function positiveCount(id) {
             const firstClassInput = document.getElementById(id);
             const firstClassInputNumber = parseInt(firstClassInput.value);
@@ -132,6 +132,7 @@
             firstClassInput.value = increaseTicket;
             document.getElementById(id).value = increaseTicket;
         }
+        // negative count function
         function negativeCount(id) {
             const firstClassInput = document.getElementById(id).value;
             const firstClassInputNumber = parseInt(firstClassInput);
@@ -141,26 +142,27 @@
             const decreaseTicket = firstClassInputNumber - 1;
             document.getElementById(id).value = decreaseTicket;
         }
+        // total cost calculation
         function calculateTotal() {
             const firstClass = document.getElementById("f-input");
             const totalCostOfFirstClass = parseInt(firstClass.value);
             const economyClass = document.getElementById("e-input");
             const totalCostOfEconomyClass = parseInt(economyClass.value);
-            const subTotal = totalCostOfFirstClass * 150 + totalCostOfEconomyClass * 100;
+            // subtotal calculation of both tickets
+            const subTotal = totalCostOfFirstClass * 150 + totalCostOfEconomyClass * 100; 
             document.getElementById("sub-total").innerText = subTotal;
+            // VAT calculation of both tickets
             const tax = Math.round(subTotal * 0.1);
             document.getElementById("vat").innerText = tax;
+            // total cost of both tickets
             const totalCost = subTotal + tax;
             document.getElementById("total").innerText = totalCost;
         }
-        document.getElementsByClassName("booking").addEventListener("click", function () {
-            const bookingFormArea = document.getElementById('booking-area');
-            bookingFormArea.style.display = 'none';
-            const billArea = document.getElementById('bill-area');
-            billArea.style.display = 'block';
-        });
+        // confirmation message of ticket booking
+        function confirmationText() {
+            alert("Successfully Booked Your Ticket");
+        }
     </script>
-    <!--Thank You-->
 </body>
 
 </html>
