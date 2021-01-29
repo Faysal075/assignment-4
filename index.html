@@ -85,7 +85,7 @@
                         <p>Subtotal</p>
                     </div>
                     <div class="right">
-                        <p>$500</p>
+                        <p>$<span id="sub-total">0.00</span></p>
                     </div>
                 </div>
 
@@ -94,7 +94,7 @@
                         <p>Charge 10% VAT</p>
                     </div>
                     <div class="right">
-                        <p>$50</p>
+                        <p>$<span id="vat">0.00</span></p>
                     </div>
                 </div>
                 <hr>
@@ -103,7 +103,7 @@
                         <h4>Total</h4>
                     </div>
                     <div class="right">
-                        <p>$550</p>
+                        <p>$<span id="total">0.00</span></p>
                     </div>
                 </div>
             </div>
@@ -113,38 +113,52 @@
     <script>
         // f-class + btn..
         document.getElementById("plus-btn").addEventListener("click", function () {
-            const firstClassInput = document.getElementById("f-input").value;
-            const firstClassInputNumber = parseFloat(firstClassInput);
-            const increaseTicket = firstClassInputNumber + 1;
-            document.getElementById("f-input").value = increaseTicket;
+            positiveCount("f-input");
+            calculateTotal();
         });
         // f-class - btn..
         document.getElementById("minus-btn").addEventListener("click", function () {
-            const firstClassInput = document.getElementById("f-input").value;
-            if(firstClassInput == 0){
-                firstClassInput = "0";
-            }
-            const firstClassInputNumber = parseFloat(firstClassInput);
-            const decreaseTicket = firstClassInputNumber - 1;
-            document.getElementById("f-input").value = decreaseTicket;
+            negativeCount("f-input");
+            calculateTotal();
         });
         // e-class + btn
         document.getElementById("plusBtn").addEventListener("click", function () {
-            const firstClassInput = document.getElementById("e-input").value;
-            const firstClassInputNumber = parseFloat(firstClassInput);
-            const increaseTicket = firstClassInputNumber + 1;
-            document.getElementById("e-input").value = increaseTicket;
+            positiveCount("e-input");
+            calculateTotal();
         });
         // e-class - btn
         document.getElementById("minusBtn").addEventListener("click", function () {
-            const firstClassInput = document.getElementById("e-input").value;
-            if(firstClassInput == 0){
-                firstClassInput = "0";
-            }
-            const firstClassInputNumber = parseFloat(firstClassInput);
-            const decreaseTicket = firstClassInputNumber - 1;
-            document.getElementById("e-input").value = decreaseTicket;
+            negativeCount("e-input");
+            calculateTotal();
         });
+        function positiveCount(id){
+            const firstClassInput = document.getElementById(id);
+            const firstClassInputNumber = parseInt(firstClassInput.value);
+            const increaseTicket = firstClassInputNumber + 1;
+            firstClassInput.value = increaseTicket;
+            document.getElementById(id).value = increaseTicket;
+        }
+        function negativeCount(id){
+            const firstClassInput = document.getElementById(id).value;
+            const firstClassInputNumber = parseInt(firstClassInput);
+            if (firstClassInput == 0) {
+                firstClassInputNumber = 0;
+            }
+            const decreaseTicket = firstClassInputNumber - 1;
+            document.getElementById(id).value = decreaseTicket;
+        }
+        function calculateTotal() {
+            const firstClass = document.getElementById("f-input");
+            const totalCostOfFirstClass = parseInt(firstClass.value);
+            const economyClass = document.getElementById("e-input");
+            const totalCostOfEconomyClass = parseInt(economyClass.value);
+            const subTotal = totalCostOfFirstClass * 150 + totalCostOfEconomyClass * 100;
+            document.getElementById("sub-total").innerText = subTotal;
+            const tax = Math.round(subTotal*0.1);
+            document.getElementById("vat").innerText = tax;
+            const totalCost = subTotal+tax;
+            document.getElementById("total").innerText = totalCost;
+        }
     </script>
 
     <!--Thank You-->
