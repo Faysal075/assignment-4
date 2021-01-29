@@ -94,7 +94,7 @@ nav ul li a:hover, a.active{
     align-items: center;
 }
 .inp-width{
-    min-width: 300px;
+    min-width: 250px;
 }
 .plus-minus-btn{
     color: #3352F2;
@@ -115,10 +115,19 @@ nav ul li a:hover, a.active{
     border-radius: 5px;
     border: none;
     color: #fff;
+    font-size: 25px;
     font-weight: 500;
     background-color:  #E33741;
+}
+
+.btn-color{
+    color: darkslateblue;
+    background-color: lightgray;
 }
 .amount{
     display: flex;
     justify-content: space-between;
+}
+#bill-area{
+    display: none;
 }
